@@ -592,6 +592,34 @@ header:not(.scrolled) nav a {
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
+/* ── Светлая тема: шрифты шапки ────────────────────────── */
+:global(html[data-theme="light"]) nav a {
+  color: var(--gold);
+  opacity: .85;
+}
+:global(html[data-theme="light"]) nav a:hover,
+:global(html[data-theme="light"]) nav a.active {
+  color: var(--gold2);
+  opacity: 1;
+}
+:global(html[data-theme="light"]) .logo-nm {
+  color: var(--gold);
+}
+:global(html[data-theme="light"]) .auth-link {
+  color: var(--gold);
+  opacity: .85;
+}
+:global(html[data-theme="light"]) .auth-link:hover {
+  color: var(--gold2);
+  opacity: 1;
+}
+:global(html[data-theme="light"]) .nav-user {
+  color: var(--gold);
+}
+:global(html[data-theme="light"]) .ico-btn {
+  color: var(--gold);
+}
+
 /* ── Адаптив ───────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .head-search.open { width: 220px; }

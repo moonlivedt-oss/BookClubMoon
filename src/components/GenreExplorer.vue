@@ -25,7 +25,6 @@
           <div class="gc-sel-ring"></div>
 
           <div class="gc-content">
-            <span class="gc-icon">{{ g.icon }}</span>
             <div class="gc-name">{{ g.label }}</div>
             <div class="gc-count">{{ bookCount(g.key) }} книг</div>
           </div>
@@ -94,12 +93,12 @@ const active    = ref(null)
 const drawerRef = ref(null)
 
 const genres = [
-  { key:'classic', label:'Классика',    icon:'📜', img:'/public/image/Классика.jpg' },
-  { key:'modern',  label:'Современные', icon:'🌆', img:'/public/image/Современные.jpg' },
-  { key:'fantasy', label:'Фантастика',  icon:'🔮', img:'/public/image/фантастика.jpg' },
-  { key:'mystery', label:'Детектив',    icon:'🔍', img:'/public/image/детектив.jpg' },
-  { key:'poetry',  label:'Поэзия',      icon:'✒️', img:'/public/image/поэзия.jpg' },
-  { key:'all',     label:'Все книги',   icon:'📚', img:'/public/image/общее.jpg' },
+  { key:'classic', label:'Классика',    img:'/public/image/Классика.jpg' },
+  { key:'modern',  label:'Современные', img:'/public/image/Современные.jpg' },
+  { key:'fantasy', label:'Фантастика',  img:'/public/image/фантастика.jpg' },
+  { key:'mystery', label:'Детектив',    img:'/public/image/детектив.jpg' },
+  { key:'poetry',  label:'Поэзия',      img:'/public/image/поэзия.jpg' },
+  { key:'all',     label:'Все книги',   img:'/public/image/общее.jpg' },
 ]
 
 const drawerBooks = computed(() =>
@@ -132,7 +131,7 @@ section { padding:5rem 2.5rem; background:var(--bg0); }
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  height: 300px;          /* fixed tall height instead of aspect-ratio */
+  height: 380px;
   border: 1.5px solid transparent;
   transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
@@ -194,10 +193,10 @@ section { padding:5rem 2.5rem; background:var(--bg0); }
 @keyframes shimmer { 0%,100%{ opacity:.6; } 50%{ opacity:1; } }
 
 /* ── CONTENT ── */
-.gc-content { position:absolute; bottom:0; left:0; right:0; padding:1.5rem 1.75rem; }
-.gc-icon  { font-size:2.2rem; margin-bottom:.6rem; display:block; filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)); }
-.gc-name  { font-family:var(--fh); font-size:1.15rem; letter-spacing:.08em; color:var(--cream); margin-bottom:5px; text-shadow:0 1px 4px rgba(0,0,0,.7); }
-.gc-count { font-family:var(--fs); font-size:12px; color:var(--gold); opacity:.85; }
+.gc-content { position:absolute; bottom:0; left:0; right:0; padding:1.75rem 1.75rem; }
+/* Текст карточек всегда светлый — оверлей снизу всегда тёмный в любой теме */
+.gc-name  { font-family:var(--fh); font-size:1.3rem; letter-spacing:.08em; color:#F2E8D4; margin-bottom:6px; text-shadow:0 2px 8px rgba(0,0,0,.8); }
+.gc-count { font-family:var(--fs); font-size:13px; color:#C9A84C; opacity:.9; text-shadow:0 1px 4px rgba(0,0,0,.6); }
 
 /* ── DRAWER ── */
 .genre-drawer { margin-top:1.5rem; }
