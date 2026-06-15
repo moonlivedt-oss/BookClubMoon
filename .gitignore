@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Database config with credentials (copy config.example.php -> config.php)
+backend/config.php
+
+# Local env overrides
+.env.local
+.env.*.local
+
+# User-uploaded files
+backend/uploads/avatars/*
+!backend/uploads/avatars/README.txt
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+*.log
+npm-debug.log*

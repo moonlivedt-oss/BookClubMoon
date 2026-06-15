@@ -1,0 +1,6 @@
+# Запрет на исполнение PHP/скриптов в папке загрузок
+<FilesMatch "\.(php|phtml|phar|py|pl|cgi|sh)$">
+  Require all denied
+</FilesMatch>
+
+# Apache 2.4 по умолчанию даёт доступ к статике — нам этого достаточно
