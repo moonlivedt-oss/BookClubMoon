@@ -187,8 +187,13 @@ function goToProfilePage() {
 .auth-backdrop {
   position: fixed; inset: 0; z-index: 100000;
   background: rgba(8, 6, 3, .85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex; align-items: center; justify-content: center;
   padding: 24px;
+}
+:global(html[data-theme="light"]) .auth-backdrop {
+  background: rgba(180, 165, 138, .7);
 }
 
 .auth-card {
@@ -241,7 +246,7 @@ function goToProfilePage() {
 .auth-field input,
 .auth-field textarea {
   width: 100%;
-  background: rgba(0,0,0,.25);
+  background: var(--bg-input);
   border: 1px solid var(--bord);
   border-radius: 2px;
   padding: 11px 14px;
@@ -255,7 +260,7 @@ function goToProfilePage() {
 .auth-field textarea:focus {
   outline: none;
   border-color: var(--gold);
-  background: rgba(0,0,0,.4);
+  background: var(--bg3);
 }
 
 .auth-btn {
@@ -274,7 +279,7 @@ function goToProfilePage() {
 .auth-btn.ghost {
   background: transparent;
   color: var(--cream);
-  border: 1px solid rgba(242,232,212,.2);
+  border: 1px solid var(--border-soft);
 }
 .auth-btn.ghost:hover:not(:disabled) {
   border-color: var(--gold);
@@ -289,6 +294,11 @@ function goToProfilePage() {
   color: #f1c2c2;
   padding: 9px 12px; border-radius: 2px;
   font-size: 13px; line-height: 1.4;
+}
+:global(html[data-theme="light"]) .auth-err {
+  background: rgba(180, 60, 60, .08);
+  color: #8b2020;
+  border-color: rgba(160, 60, 60, .3);
 }
 .auth-ok {
   color: var(--gold); font-size: 13px; letter-spacing: .05em;

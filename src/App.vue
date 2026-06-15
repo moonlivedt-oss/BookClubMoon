@@ -60,6 +60,12 @@
 
   <!-- Auth modals (login / register / profile) -->
   <AuthModals />
+
+  <!-- Toast notifications -->
+  <ToastNotif />
+
+  <!-- Back to top -->
+  <button id="back-top" :class="{ show: showTop }" @click="scrollTop" title="Наверх">↑</button>
 </template>
 
 <script setup>
@@ -82,24 +88,30 @@ import ParticleCanvas     from './components/ParticleCanvas.vue'
 import ReaderModal        from './components/ReaderModal.vue'
 import AuthModals         from './components/AuthModals.vue'
 import ProfilePage        from './components/ProfilePage.vue'
+import ToastNotif         from './components/ToastNotif.vue'
 
 import { useReader }  from './composables/useReader.js'
 import { useShelf }   from './composables/useShelf.js'
 import { useCursor, useCursorFollow } from './composables/useCursor.js'
 import { useAuth }    from './composables/useAuth.js'
+import { useToast }   from './composables/useToast.js'
 
 const { open: openReader } = useReader()
 const { shelf }            = useShelf()
 const { cursorMode, cycle: cycleCursor } = useCursor()
 const { fetchMe, route }   = useAuth()
+const { add: toast }       = useToast()
 useCursorFollow()
+
+const showTop = ref(false)
+function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) }
 
 function showShelf() {
   const n = shelf.value.length
   const f = ['книга','книги','книг']
   const m = n % 10, h = n % 100
   const w = (m===1&&h!==11)?f[0]:(m>=2&&m<=4&&(h<10||h>=20))?f[1]:f[2]
-  alert(`На вашей полке ${n} ${w}!\n\nПродолжайте читать 📚`)
+  toast(`На вашей полке ${n} ${w} — продолжайте читать!`, 'shelf')
 }
 
 // ── Loader ──────────────────────────────────────────────────
@@ -136,6 +148,10 @@ onMounted(() => {
       setTimeout(() => { loaderDone.value = true }, 400)
     }
   }, 80)
+
+  window.addEventListener('scroll', () => {
+    showTop.value = window.scrollY > 420
+  }, { passive: true })
 
   setTimeout(attachInteractions, 200)
 })

@@ -23,6 +23,10 @@
   --fb: 'Rosarium','Cormorant Garamond', Georgia, serif;
   --fs: 'Lora', Georgia, serif;
   --fa: 'SKNigar','Cinzel', serif;
+  /* Semi-transparent surfaces */
+  --bg-float: rgba(8,6,3,.88);
+  --bg-input: rgba(255,255,255,.05);
+  --border-soft: rgba(242,232,212,.2);
 }
 
 /* Светлая тема: переопределяем все цветовые токены.
@@ -39,8 +43,12 @@ html[data-theme="light"] {
   --cream: #2A1E08;
   --cream2: #6B5832;
   --bord: rgba(0, 0, 0, .1);
+  --bg-float: rgba(248,242,228,.94);
+  --bg-input: rgba(0,0,0,.04);
+  --border-soft: rgba(100,80,40,.18);
 }
 html[data-theme="light"] body { background: var(--bg0); }
+html[data-theme="light"] ::selection { background: rgba(140,110,26,.2); color: var(--cream); }
 html[data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg2); }
 
 /* ── RESET ──────────────────────────────────────────────────── */
@@ -54,6 +62,7 @@ body {
   line-height: 1.75;
   overflow-x: hidden;
   cursor: none;
+  transition: background-color .4s ease, color .4s ease;
 }
 ::selection { background: rgba(201,168,76,.3); }
 ::-webkit-scrollbar { width:5px; }
@@ -62,7 +71,7 @@ body {
 
 /* ── SHARED UTILITIES ───────────────────────────────────────── */
 .sec-in { max-width:1200px; margin:0 auto; }
-.sec-lb { font-family:var(--fa); font-size:13helpx; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); opacity:.8; margin-bottom:.75rem; display:block; }
+.sec-lb { font-family:var(--fa); font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); opacity:.8; margin-bottom:.75rem; display:block; }
 .sec-h  { font-family:var(--fh); font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700; color:var(--cream); line-height:1.15; }
 .sec-h em { color:var(--gold); font-style:italic; }
 .sec-div { width:60px; height:2px; background:linear-gradient(to right,var(--gold),transparent); margin-top:1.25rem; }
@@ -77,7 +86,7 @@ body {
 
 .btn-ghost {
   background:transparent; color:var(--cream);
-  padding:13px 30px; border:1px solid rgba(242,232,212,.25); border-radius:2px;
+  padding:13px 30px; border:1px solid var(--border-soft); border-radius:2px;
   font-family:var(--fh); font-size:13px; letter-spacing:.1em;
   cursor:pointer; transition:all .25s;
 }
@@ -119,9 +128,9 @@ body.cur-star #cursor-dot { display:none; }
 /* ── FLOATING BADGES ────────────────────────────────────────── */
 #ptcl-toggle, #cursor-switcher {
   position:fixed; right:1.5rem; z-index:2000;
-  background:rgba(8,6,3,.75); border:1px solid var(--gb); border-radius:20px;
+  background:var(--bg-float); border:1px solid var(--gb); border-radius:20px;
   padding:6px 14px; font-family:var(--fh); font-size:11px; letter-spacing:.1em;
-  color:var(--gold); cursor:pointer; backdrop-filter:blur(8px); transition:all .2s;
+  color:var(--gold); cursor:pointer; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:all .2s;
   display:flex; align-items:center; gap:8px;
 }
 #ptcl-toggle { top:76px; }
@@ -134,10 +143,10 @@ body.cur-star #cursor-dot { display:none; }
 
 #shelf-badge {
   position:fixed; bottom:2rem; right:2rem; z-index:3000;
-  background:rgba(8,6,3,.9); border:1px solid var(--gb); border-radius:30px;
+  background:var(--bg-float); border:1px solid var(--gb); border-radius:30px;
   padding:10px 20px; display:none; align-items:center; gap:10px;
   cursor:pointer; font-family:var(--fs); font-size:13px; color:var(--cream);
-  backdrop-filter:blur(8px); animation:popin .3s ease;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); animation:popin .3s ease;
 }
 #shelf-badge.show { display:flex; }
 @keyframes popin { from{transform:scale(.8) translateY(10px);opacity:0;} to{transform:none;opacity:1;} }
@@ -185,8 +194,8 @@ body.cur-star #cursor-dot { display:none; }
 
 .cat-top { display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap; align-items:center; }
 .search-w { flex:1; min-width:220px; position:relative; }
-.search-w input { width:100%; background:rgba(255,255,255,.04); border:1px solid var(--gb); border-radius:3px; padding:10px 14px 10px 42px; font-family:var(--fs); font-size:14px; color:var(--cream); outline:none; transition:border-color .2s; }
-.search-w input::placeholder { color:rgba(242,232,212,.3); }
+.search-w input { width:100%; background:var(--bg-input); border:1px solid var(--gb); border-radius:3px; padding:10px 14px 10px 42px; font-family:var(--fs); font-size:14px; color:var(--cream); outline:none; transition:border-color .2s, background .3s; }
+.search-w input::placeholder { color:var(--cream2); opacity:.55; }
 .search-w input:focus { border-color:var(--gold); }
 .search-w::before { content:'⌕'; position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--gold); opacity:.6; font-size:18px; pointer-events:none; }
 .src-mode { display:flex; border:1px solid var(--gb); border-radius:3px; overflow:hidden; }
@@ -195,6 +204,20 @@ body.cur-star #cursor-dot { display:none; }
 .pills { display:flex; gap:8px; flex-wrap:wrap; }
 .pill { padding:7px 16px; border-radius:20px; border:1px solid var(--bord); background:transparent; font-size:13px; font-family:var(--fs); color:var(--cream2); cursor:pointer; transition:all .2s; letter-spacing:.03em; }
 .pill:hover, .pill.on { background:var(--gp); border-color:var(--gb); color:var(--gold); }
+
+/* ── BACK TO TOP ─────────────────────────────────────────────── */
+#back-top {
+  position:fixed; left:1.5rem; bottom:2rem; z-index:3000;
+  width:42px; height:42px; border-radius:50%;
+  background:var(--bg-float); border:1px solid var(--gb);
+  color:var(--gold); font-size:18px; font-family:var(--fh);
+  cursor:pointer; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transform:translateY(10px);
+  transition:opacity .3s ease, transform .3s ease, background .2s, border-color .2s;
+}
+#back-top.show { opacity:1; pointer-events:auto; transform:translateY(0); }
+#back-top:hover { background:var(--gp); border-color:var(--gold); box-shadow:0 0 14px rgba(201,168,76,.25); }
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width:900px) {

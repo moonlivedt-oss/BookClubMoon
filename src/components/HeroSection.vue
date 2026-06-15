@@ -116,6 +116,10 @@ function goTo(sel) { document.querySelector(sel)?.scrollIntoView({ behavior: 'sm
   background:
     radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(4,3,2,.85) 100%);
   pointer-events:none;
+  transition: background .4s ease;
+}
+:global(html[data-theme="light"]) .hero-vignette {
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 45%, rgba(240,232,210,.65) 100%);
 }
 
 /* Цветной градиент поверх всего */
@@ -126,6 +130,12 @@ function goTo(sel) { document.querySelector(sel)?.scrollIntoView({ behavior: 'sm
     radial-gradient(ellipse at 15% 85%, rgba(201,168,76,.1), transparent 45%),
     linear-gradient(to bottom, rgba(8,6,3,.3) 0%, transparent 40%, rgba(8,6,3,.5) 100%);
   pointer-events:none;
+  transition: background .4s ease;
+}
+:global(html[data-theme="light"]) .hero-grad {
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(100,12,22,.1), transparent 55%),
+    linear-gradient(to bottom, rgba(240,232,210,.12) 0%, transparent 40%, rgba(240,232,210,.3) 100%);
 }
 
 /* ── LAYOUT ────────────────────────────────────────────────────────────── */
@@ -164,7 +174,7 @@ h1 { font-family:var(--fh); font-size:clamp(2.8rem,5.5vw,4.2rem); font-weight:70
   position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:8px;
   font-family:var(--fs); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
-  color:rgba(242,232,212,.3); animation:bob 2s ease-in-out infinite; z-index:3;
+  color:var(--cream2); opacity:.45; animation:bob 2s ease-in-out infinite; z-index:3;
 }
 .hero-scroll-ln { width:1px; height:50px; background:linear-gradient(to bottom,var(--gold),transparent); }
 @keyframes bob {
