@@ -27,6 +27,10 @@
   --bg-float: rgba(8,6,3,.88);
   --bg-input: rgba(255,255,255,.05);
   --border-soft: rgba(242,232,212,.2);
+  /* Header scrolled background (CSS var bypasses Vue scoped ::before issue) */
+  --header-scroll-bg: linear-gradient(180deg, rgba(14,11,7,.68) 0%, rgba(14,11,7,.88) 100%);
+  --header-scroll-border: rgba(201,168,76,.15);
+  --header-scroll-shadow: 0 8px 32px rgba(0,0,0,.35), 0 1px 0 rgba(201,168,76,.08) inset;
 }
 
 /* Светлая тема: переопределяем все цветовые токены.
@@ -46,6 +50,9 @@ html[data-theme="light"] {
   --bg-float: rgba(248,242,228,.94);
   --bg-input: rgba(0,0,0,.04);
   --border-soft: rgba(100,80,40,.18);
+  --header-scroll-bg: linear-gradient(180deg, rgba(248,242,228,.88) 0%, rgba(251,247,236,.97) 100%);
+  --header-scroll-border: rgba(140,110,26,.25);
+  --header-scroll-shadow: 0 6px 28px rgba(140,110,26,.1);
 }
 html[data-theme="light"] body { background: var(--bg0); }
 html[data-theme="light"] ::selection { background: rgba(140,110,26,.2); color: var(--cream); }

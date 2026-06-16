@@ -70,11 +70,15 @@ onUnmounted(() => clearInterval(interval))
 <style scoped>
 .quote-s { background:linear-gradient(135deg,rgba(122,18,32,.3),var(--bg1)); border-top:1px solid var(--gb); border-bottom:1px solid var(--gb); padding:5rem 2.5rem; text-align:center; position:relative; overflow:hidden; }
 .quote-s::before { content:''; position:absolute; left:50%; top:0; width:1px; height:100%; background:linear-gradient(to bottom,transparent,rgba(201,168,76,.2),transparent); transform:translateX(-50%); }
-.qs-wrap { position:relative; display:inline-block; max-width:780px; }
+.qs-wrap { position:relative; display:block; max-width:780px; width:100%; margin:0 auto; }
 .qs-shimmer { position:absolute; top:0; width:60%; height:100%; background:linear-gradient(to right,transparent,rgba(201,168,76,.12),transparent); pointer-events:none; }
 .qs-shimmer.run { animation:shimmer 3s ease-in-out; }
 @keyframes shimmer { 0%{left:-60%;} 100%{left:110%;} }
-blockquote { font-family:var(--fh); font-size:clamp(1.3rem,3vw,1.9rem); font-style:italic; color:var(--cream); line-height:1.65; min-height:2.5em; }
+blockquote {
+  font-family:var(--fh); font-size:clamp(1.1rem,2.5vw,1.75rem); font-style:italic;
+  color:var(--cream); line-height:1.65; min-height:2.5em;
+  overflow-wrap:break-word; word-break:break-word; hyphens:auto;
+}
 cite { display:block; margin-top:1.25rem; font-family:var(--fs); font-size:13px; letter-spacing:.2em; color:var(--gold); font-style:normal; opacity:.85; }
 .qchar { display:inline; }
 .qchar.qin  { animation:charIn  .55s cubic-bezier(.215,.61,.355,1) both; }

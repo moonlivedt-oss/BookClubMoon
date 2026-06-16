@@ -283,21 +283,15 @@ header::before {
 /* СКРОЛЛ — стеклянная двухслойная */
 header.scrolled {
   height: 62px;
-  border-bottom: 1px solid rgba(201, 168, 76, .15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .35), 0 1px 0 rgba(201, 168, 76, .08) inset;
+  border-bottom: 1px solid var(--header-scroll-border);
+  box-shadow: var(--header-scroll-shadow);
 }
 header.scrolled::before {
-  background:
-    linear-gradient(180deg, rgba(14, 11, 7, .65) 0%, rgba(14, 11, 7, .85) 100%);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-}
-:global(html[data-theme="light"]) header.scrolled {
-  border-bottom: 1px solid rgba(140, 110, 26, .25);
-  box-shadow: 0 6px 28px rgba(140, 110, 26, .08);
-}
-:global(html[data-theme="light"]) header.scrolled::before {
-  background: linear-gradient(180deg, rgba(248, 242, 228, .75) 0%, rgba(248, 242, 228, .92) 100%);
+  /* CSS-переменная — единственный надёжный способ переключать ::before
+     из глобальной темы: :global() в scoped-блоке не пробивает data-v-xxx */
+  background: var(--header-scroll-bg);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
 }
 
 /* Прогресс-бар чтения */
@@ -594,29 +588,36 @@ header:not(.scrolled) nav a {
 
 /* ── Светлая тема: шрифты шапки ────────────────────────── */
 :global(html[data-theme="light"]) nav a {
-  color: var(--gold);
-  opacity: .85;
+  color: var(--cream2);   /* тёплый средне-коричневый #6B5832 */
+  opacity: 1;
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
 }
 :global(html[data-theme="light"]) nav a:hover,
 :global(html[data-theme="light"]) nav a.active {
-  color: var(--gold2);
-  opacity: 1;
+  color: var(--gold);
+  text-shadow: none;
 }
 :global(html[data-theme="light"]) .logo-nm {
+  color: var(--cream2);
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+:global(html[data-theme="light"]) .logo-sb {
   color: var(--gold);
 }
 :global(html[data-theme="light"]) .auth-link {
-  color: var(--gold);
-  opacity: .85;
-}
-:global(html[data-theme="light"]) .auth-link:hover {
-  color: var(--gold2);
+  color: var(--cream2);
   opacity: 1;
 }
-:global(html[data-theme="light"]) .nav-user {
+:global(html[data-theme="light"]) .auth-link:hover {
   color: var(--gold);
 }
+:global(html[data-theme="light"]) .nav-user {
+  color: var(--cream2);
+}
 :global(html[data-theme="light"]) .ico-btn {
+  color: var(--cream2);
+}
+:global(html[data-theme="light"]) .ico-btn:hover {
   color: var(--gold);
 }
 
