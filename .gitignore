@@ -21,6 +21,12 @@ backend/uploads/avatars/*
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Скриншоты / референсы в корне (не часть кода)
+/*.png
+/*.jpg
+/*.jpeg
 
 # Editor
 .vscode/
